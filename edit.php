@@ -53,6 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit">Update</button>
         </div>
     </form>
-    <a href="index.php">Back to list</a>
+    <a href="users.php">Back to list</a>
 </body>
 </html>

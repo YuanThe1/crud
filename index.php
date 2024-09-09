@@ -7,13 +7,21 @@ $result = mysqli_query($connection, $sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link rel="stylesheet" href="style.css">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crud Example</title>
+<script>
+    function redirectToLogin() {
+            window.location.href = 'login.php';
+        }
+</script>
 </head>
 <body>
-    <h1>Hello World</h1>
+    <h1>Register</h1>
 
     <form action="function.php" method="post">
         <div>
@@ -33,35 +41,10 @@ $result = mysqli_query($connection, $sql);
         </div>
     </form>
 
-    <h2>User List</h2>
-    <?php
-    if (mysqli_num_rows($result) > 0) {
-        echo "<table border='1'>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Password</th>
-                <th>Actions</th>
-            </tr>";
-        while($row = mysqli_fetch_assoc($result)) {
-            echo "<tr>
-                      <td>" . htmlspecialchars($row["id"]) . "</td>
-                      <td>" . htmlspecialchars($row["name"]) . "</td>
-                      <td>" . htmlspecialchars($row["email"]) . "</td>
-                      <td>" . htmlspecialchars($row["pass"]) . "</td>
-                      <td>
-                          <a href='edit.php?id=" . $row["id"] . "'>Edit</a> |
-                          <a href='delete.php?id=" . $row["id"] . "' onclick='return confirm(\"Are you sure?\")'>Delete</a>
-                      </td>
-                  </tr>";
-        }
-        echo "</table>";
-    } else {
-        echo "0 results";
-    }
+    <button onclick="redirectToLogin()">Login</button>
 
-    mysqli_close($connection);
-    ?>
+    <script> src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"</script>
+    
+
 </body>
 </html>
