@@ -1,0 +1,67 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f8f9fa;
+}
+
+.form-container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.btn-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-group {
+    position: relative;
+}
+
+.form-control {
+    padding-right: 2.5rem; /* Add space for the eye icon */
+}
+
+.eye-icon {
+    cursor: pointer;
+    position: absolute;
+    right: 10px; /* Adjust if needed */
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    z-index: 2; /* Ensure the icon is above the input field */
+}
+
+.eye-icon i {
+    font-size: 1.25rem; /* Adjust size if needed */
+}
+
+.eye-icon.active i {
+    color: #007bff; /* Bootstrap primary color */
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+    75% { transform: translateX(-10px); }
+    100% { transform: translateX(0); }
+}
+
+.shake {
+    animation: shake 0.5s ease;
+}
