@@ -48,7 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/password-toggle.css"> <!-- Ensure this path is correct -->
     <script>
         function togglePasswordVisibility() {
             var passwordField = document.getElementById('password');
@@ -84,15 +83,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="password" class="form-label">Password:</label>
                 <div class="input-group">
                     <input type="password" id="password" name="password" class="form-control" required>
-                    <span class="input-group-text eye-icon" id="eyeIcon" onclick="togglePasswordVisibility()">
-                        <i class="fa-solid fa-eye"></i>
+                    <span class="input-group-text eye-icon" onclick="togglePasswordVisibility()">
+                        <i  id="eyeIcon" class="fa-solid fa-eye"></i>
                     </span>
                 </div>
             </div>
             <div class="btn-container">
                 <button type="submit" class="btn btn-primary">Login</button>
-                <button type="button" class="btn btn-secondary" onclick="window.location.href='index.php'">Register</button>
             </div>
+            <p>Don't Have an Account?<a class="link-info"  onclick="window.location.href='index.php'">Register here</a></p>
         </form>
     </div>
 

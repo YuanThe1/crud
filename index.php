@@ -1,6 +1,12 @@
 <?php
 include("dbconfig.php");
 
+session_start(); // Start the session to handle user login state
+if (isset($_SESSION['user_id'])) {
+    header('Location: users.php');
+    exit();
+}
+
 // Fetch data from the database
 $sql = "SELECT id, name, email, pass FROM users";
 $result = mysqli_query($connection, $sql);
@@ -14,7 +20,6 @@ $result = mysqli_query($connection, $sql);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/password-toggle.css"> <!-- New CSS file -->
     <script>
         function redirectToLogin() {
             window.location.href = 'login.php';
@@ -54,15 +59,16 @@ $result = mysqli_query($connection, $sql);
                 <label for="password" class="form-label">Password:</label>
                 <div class="input-group">
                     <input type="password" id="password" name="password" class="form-control" required>
-                    <span class="input-group-text eye-icon" id="eyeIcon" onclick="togglePasswordVisibility()">
-                        <i class="fa-solid fa-eye"></i>
+                    <span class="input-group-text eye-icon" onclick="togglePasswordVisibility()">
+                        <i  id="eyeIcon" class="fa-solid fa-eye"></i>
                     </span>
                 </div>
             </div>
             <div class="btn-container">
                 <button type="submit" name="submit" class="btn btn-primary">Submit</button>
-                <button type="button" class="btn btn-secondary" onclick="redirectToLogin()">Login</button>
             </div>
+            <p>Already Have an Account? <a class="link-info" onclick="redirectToLogin()">Log in</a></p>
+
         </form>
     </div>
 
