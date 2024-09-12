@@ -12,8 +12,11 @@ body {
     border-radius: 12px;
     padding: 30px;
     width: 100%;
-    max-width: 400px;
+    max-width: 400px; /* Ensures the form container doesn’t exceed 400px */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Adds space between elements */
 }
 
 h1 {
@@ -64,9 +67,4 @@ h1 {
 
 .shake {
     animation: shake 0.5s ease;
-}
-
-.container{
-    
-
 }

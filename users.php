@@ -23,9 +23,10 @@ $result = mysqli_query($connection, $sql);
 
 <body>
 <div class="container">
-<div class="grid text-center">
-<h2>User List <a type="button" class="btn btn-primary" href='add.php?id= <?php echo $row["id"];?>'>Add</a></h2>
-</div>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+        <h2 style="flex-grow: 1; text-align: center; margin: 0;">User List</h2>
+        <a type="button" class="btn btn-primary" href='add.php'>Add a user</a>
+    </div>
 <div>
 </div>
     <?php
