@@ -2,10 +2,9 @@
 include("dbconfig.php");
 
 session_start(); // Start the session to handle user login state
-if (!isset($_SESSION['user_id'] )){
+if (!isset($_SESSION['user_id'] )) {
     header('Location: login.php');
 }
-
 
 // Fetch data from the database
 $sql = "SELECT id, name, email, pass FROM users"; // Ensure this matches your actual table structure
@@ -23,14 +22,15 @@ $result = mysqli_query($connection, $sql);
 
 <body>
 <div class="container">
-<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-        <h2 style="flex-grow: 1; text-align: center; margin: 0;">User List</h2>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+        <h2 style="flex-grow: 1; text-align: center; margin: 1;">User List</h2>
         <a type="button" class="btn btn-primary" href='add.php'>Add a user</a>
     </div>
-<div>
-</div>
-    <?php
-    if (mysqli_num_rows($result) > 0) {
+
+    <!-- Add a scrollable container around the table -->
+    <div class="table-responsive">
+        <?php
+        if (mysqli_num_rows($result) > 0) {
         ?>
         <table border='1' class='table table-striped'>
             <tr class='table-dark'>
@@ -41,33 +41,30 @@ $result = mysqli_query($connection, $sql);
                 <th class="text-center">Actions</th>
             </tr>
             <?php   
-        while($row = mysqli_fetch_assoc($result)) {
+            while($row = mysqli_fetch_assoc($result)) {
             ?>
             <tr class='table table-striped'>
-                      <td><?php echo $row["id"]?></td>
-                      <td><?php echo $row["name"]?></td>
-                      <td><?php echo $row["email"]?></td>
-                      <td><?php echo $row["pass"]?></td>
-                      <td class="text-center">
-                          <a type="button" class="btn btn-success" href='edit.php?id= <?php echo $row["id"];?>'>Edit</a>
-                          <a type="button" class="btn btn-danger" href='delete.php?id= <?php echo $row["id"];?>' onclick='return confirm(\"Are you sure?\")'>Delete</a>
-                      </td>
-                  </tr>
-                  <?php 
+                <td><?php echo $row["id"]?></td>
+                <td><?php echo $row["name"]?></td>
+                <td><?php echo $row["email"]?></td>
+                <td><?php echo $row["pass"]?></td>
+                <td class="text-center">
+                    <a type="button" class="btn btn-success" href='edit.php?id=<?php echo $row["id"];?>'>Edit</a>
+                    <a type="button" class="btn btn-danger" href='delete.php?id=<?php echo $row["id"];?>' onclick='return confirm("Are you sure?")'>Delete</a>
+                </td>
+            </tr>
+            <?php 
+            }
+            ?>
+        </table>
+        <?php 
+        } else {
+            echo "0 results";
         }
         ?>
-       </table>
-       <?php 
-    } else {
-        echo "0 results";
-    }
+    </div>
     
-    
-
-    mysqli_close($connection);
-    ?>
-            <a href="logout.php">Log out</a>
-
+    <a href="logout.php">Log out</a>
 </div>
 
 </body>
