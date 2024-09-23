@@ -29,12 +29,7 @@ if (!isset($_SESSION['user_id'])) {
     <div class="input-group">
         <div class="row">
             <div class="col-auto">
-                <select class="form-select square-dropdown" id="userLimit" aria-label="Number of users per page">
-                    <option value="5">5</option>
-                    <option value="10" selected>10</option>
-                    <option value="20">20</option>
-                    <option value="50">50</option>
-                </select>
+                <input type="number" class="form-control square-dropdown" id="userLimit" min="1" value="1" aria-label="Number of users per page" style="width: 80px;">
             </div>
             <div class="col">
                 <input type="text" class="form-control search-input" id="search" placeholder="Search by name or email" aria-label="Search">
@@ -42,7 +37,6 @@ if (!isset($_SESSION['user_id'])) {
         </div>
     </div>
 </form>
-
 
     <div id="user-table" class="table-responsive">
         <!-- User table will be loaded here via AJAX -->
@@ -55,7 +49,7 @@ if (!isset($_SESSION['user_id'])) {
 <script>
 $(document).ready(function() {
     let currentPage = 1;
-    let userLimit = $('#userLimit').val(); // Default to selected limit
+    let userLimit = 1; // Set to 1 by default
 
     function fetchUsers(query, page, limit) {
         $.ajax({
@@ -86,8 +80,8 @@ $(document).ready(function() {
     });
 
     // Handle user limit change
-    $('#userLimit').on('change', function() {
-        userLimit = $(this).val();
+    $('#userLimit').on('input', function() {
+        userLimit = Math.max(1, $(this).val()); // Ensure userLimit is at least 1
         currentPage = 1; // Reset to first page
         fetchUsers($('#search').val(), currentPage, userLimit);
     });
